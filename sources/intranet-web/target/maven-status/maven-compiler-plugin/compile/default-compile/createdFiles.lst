@@ -1,7 +1,0 @@
-ws\crossnet\intranet\web\backing\MenuView.class
-ws\crossnet\intranet\web\backing\Factura.class
-ws\crossnet\intranet\web\backing\GrowlView.class
-ws\crossnet\intranet\we\security\CrossnetSecurityFilter.class
-ws\crossnet\intranet\web\backing\BasicView.class
-ws\crossnet\intranet\web\backing\FacturaService.class
-ws\crossnet\intranet\web\backing\LoginBacking.class
