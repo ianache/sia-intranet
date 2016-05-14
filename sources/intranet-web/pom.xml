@@ -241,14 +241,14 @@
                             <path>/intranet</path>
                             <update>true</update>
                         </configuration>
-                        <executions>
+                        <!--executions>
                             <execution>
                                 <goals>
                                     <goal>deploy</goal>
                                 </goals>
                                 <phase>install</phase>
                             </execution>
-                        </executions>
+                        </executions-->
                     </plugin>
                 </plugins>
             </build>
