@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" 
+         xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ws.crossnet</groupId>
+    <artifactId>intranet</artifactId>
+    <version>0.0.1</version>
+
+    <name>CROSSNET @ Intranet</name>
+
+    <packaging>pom</packaging>
+	
+    <!--repositories>
+            <repository>
+                    <id>central-nexus</id>
+                    <url>http://192.168.56.20:8081/content/repositories/central</url>
+            </repository>
+    </repositories-->
+	
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <version.primefaces>5.3</version.primefaces>
+        <version.primefaces-extensions>1.0.8</version.primefaces-extensions>
+        <version.omnifaces>2.2</version.omnifaces>
+        <version.extension-primefaces>3.2.0</version.extension-primefaces>
+        <version.javaee>7.0</version.javaee>
+        <!-- pluggin -->
+        <version.maven-dependency-plugin>2.10</version.maven-dependency-plugin>
+        <version.maven-surefire-plugin>2.19</version.maven-surefire-plugin>
+        <version.maven-remote-resources-plugin>1.5</version.maven-remote-resources-plugin>
+    </properties>
+
+
+    <modules>
+        <module>intranet-web</module>
+    </modules>
+</project>
