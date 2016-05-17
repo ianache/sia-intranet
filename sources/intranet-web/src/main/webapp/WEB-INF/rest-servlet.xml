@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="ws.crossnet.contabilidad.application" />
+
+    <!--To enable @RequestMapping process on type level and method level-->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+    <!--Use JAXB OXM marshaller to marshall/unmarshall following class-->
+    <bean id="jaxbMarshaller"
+      class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>ws.crossnet.sia.projectmanagement.application.representation.ProjectDetail</value>
+                <value>ws.crossnet.sia.projectmanagement.application.representation.ProjectStateDetail</value>
+                <value>ws.crossnet.sia.projectmanagement.application.representation.ProjectSummary</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="employees" class=
+	"org.springframework.web.servlet.view.xml.MarshallingView">
+        <constructor-arg ref="jaxbMarshaller" />
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+</beans>

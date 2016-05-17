@@ -4,13 +4,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-              
+
     <h:body>
         <ui:composition template="/templates/main.xhtml">
             <ui:define name="content">                        
-                <h1 class="page-header "> <i class="fa fa-tachometer"></i>Projects Catalog</h1>
+                <h1 class="page-header"> <i class="fa fa-tachometer"></i>Projects Catalog</h1>
+
+                <p:dataTable id="project-catalog" rows="5" paginator="true" styleClass="myTable"
+                             emptyMessage="No project founds"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             var="project" value="#{projectCatalogBean.projects}">
+                    <p:column headerText="Code" style="width:80px">
+                        <h:outputText value="#{project.code}" />
+                    </p:column>
+
+                    <p:column headerText="Title">
+                        <h:outputText value="#{project.title}" />
+                    </p:column>
+
+                    <p:column headerText="State Date" style="width:220px">
+                        <h:outputText value="#{project.stateDate}" />
+                    </p:column>
+
+                    <p:column headerText="State" style="width:80px">
+                        <h:outputText value="#{project.currentState}" />
+                    </p:column>
+                </p:dataTable>
             </ui:define>
-    	</ui:composition>
+        </ui:composition>
     </h:body>
 </html>

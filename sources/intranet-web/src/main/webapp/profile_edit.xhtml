@@ -14,45 +14,52 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h:form id="form-userpreferences" styleClass="form-horizontal">
-                            <div class="form-group">
-                                <p:outputLabel for="input-username" value="First name" styleClass="control-label col-sm-2"/>
-                                <div class="col-sm-10">
-                                    <p:inputText id="input-username" placeholder="Type user name"
-                                                 value="#{userPreferencesBean.userDetails.name}" required="true"  
-                                                 styleClass="form-control"/>
+                            <div class="page-header" id="user-generaldata">
+                                <div class="form-group">
+                                    <p:outputLabel for="input-username" value="First name" styleClass="control-label col-sm-2"/>
+                                    <div class="col-sm-10">
+                                        <p:inputText id="input-username" placeholder="Type user name"
+                                                     value="#{userPreferencesBean.userDetails.name}" required="true"  
+                                                     styleClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <p:outputLabel for="input-middlename" value="Middle name" styleClass="control-label col-sm-2"/>
+                                    <div class="col-sm-10">
+                                        <p:inputText id="input-middlename" placeholder="Type user middle name" 
+                                                     value="#{userPreferencesBean.userDetails.middleName}" required="true"  
+                                                     styleClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <p:outputLabel for="input-lastname" value="Last name" styleClass="control-label col-sm-2"/>
+                                    <div class="col-sm-10">
+                                        <p:inputText id="input-lastname" placeholder="Type user last name"
+                                                     value="#{userPreferencesBean.userDetails.lastName}" required="true"  
+                                                     styleClass="form-control"/>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <p:outputLabel for="input-middlename" value="Middle name" styleClass="control-label col-sm-2"/>
-                                <div class="col-sm-10">
-                                    <p:inputText id="input-middlename" placeholder="Type user middle name" 
-                                                 value="#{userPreferencesBean.userDetails.middleName}" required="true"  
-                                                 styleClass="form-control"/>
-                                </div>
-                            </div>
+                            <div class="page-header" id="user-security">
 
-                            <div class="form-group">
-                                <p:outputLabel for="input-lastname" value="Last name" styleClass="control-label col-sm-2"/>
-                                <div class="col-sm-10">
-                                    <p:inputText id="input-lastname" placeholder="Type user last name"
-                                                 value="#{userPreferencesBean.userDetails.lastName}" required="true"  
-                                                 styleClass="form-control"/>
+                                <div class="form-group">
+                                    <p:outputLabel for="input-password" value="Password" styleClass="control-label col-sm-2"/>
+                                    <div class="col-sm-8">
+                                        <p:password id="input-password" value="#{userPreferencesBean.userDetails.password}" required="true" styleClass="form-control" feedback="false"/>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <p:outputLabel for="input-password" value="Last name" styleClass="control-label col-sm-2"/>
-                                <div class="col-sm-8">
-                                    <p:password id="input-password" value="#{userPreferencesBean.userDetails.password}" required="true" styleClass="form-control" feedback="false"/>
-                                </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <p:commandButton  id="button-userprerences"  styleClass="btn btn-default"
-                                                  value="Save" update="form-userpreferences,growl-userpreferences" 
-                                                  action="#{userPreferencesBean.save()}"/>
+                                                      value="Save" 
+                                                      action="#{userPreferencesBean.save()}"/>
+                                    <!-- update="form-userpreferences,growl-userpreferences"  -->
                                 </div>
                             </div>
 

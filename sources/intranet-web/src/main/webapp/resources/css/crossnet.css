@@ -8,3 +8,6 @@ and open the template in the editor.
     Author     : USUARIO
 */
 
+.myTable td:nth-child(1) {
+    width: 20px;
+}

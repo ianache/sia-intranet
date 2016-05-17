@@ -4,7 +4,7 @@
     
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/spring/acegi-security-context.xml</param-value>
+        <param-value>/WEB-INF/spring/acegi-security-context.xml, /WEB-INF/spring/pm-context.xml</param-value>
     </context-param>
 
     <context-param>
@@ -18,6 +18,29 @@
         </listener-class>
     </listener>
 
+    <!--listener>
+        <listener-class>ws.crossnet.intranet.database.DerbyDataFactory</listener-class>
+    </listener-->
+    
+    <!-- REST API -->   
+    <servlet>
+        <servlet-name>jservlet</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>ws.crossnet.sia.projectmanagement.application.resources</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>jservlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>    
     
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -29,7 +52,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-       
+                    
     <welcome-file-list>
         <welcome-file>frontpage.xhtml</welcome-file>
     </welcome-file-list>
@@ -80,6 +103,7 @@
         <!--param-value>pepper-grinder</param-value--> 
         <param-value>blitzer</param-value> 
     </context-param>
+    
     <context-param>
         <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
         <param-value>true</param-value>

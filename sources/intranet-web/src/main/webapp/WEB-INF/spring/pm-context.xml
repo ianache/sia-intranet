@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    
+    <aop:aspectj-autoproxy/>
+
+    <context:annotation-config />
+    <context:property-placeholder location="classpath:database.properties" />
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${hibernate.driverClassName}" />
+        <property name="url" value="${hibernate.url}" />
+        <property name="username" value="${hibernate.username}" />
+        <property name="password" value="${hibernate.password}" />
+    </bean>
+    
+    <bean id="hibernateSessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        
+        <!-- Mapeo ORM -->
+        <property name="mappingResources">
+            <list>
+                <value>StoredEvent.hbm.xml</value>
+                <value>Project.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.jdbc.use_get_generated_keys">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernateSessionFactory" />
+    </bean>
+    
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <!-- the transactional semantics... -->
+        <tx:attributes>
+            <!-- all methods starting with 'get' are read-only -->
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <!-- other methods use the default transaction settings (see below) -->
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    
+    <aop:config>
+        <aop:pointcut id="CommonRepositoriesOperations"
+            expression="execution(* ws.crossnet..infrastructure.persistence.*Repository.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="CommonRepositoriesOperations"/>
+    </aop:config>
+    
+    <bean id="globalDomainEventProcess" 
+          class="ws.crossnet.sia.projectmanagement.application.GlobalDomainEventProcessor"/>
+    
+    <bean id="eventStore" 
+          class="com.didara.common.infrastructure.persistence.HibernateEventStore" 
+          autowire="byName"/>    
+    <bean id="projectRepository" 
+          class="ws.crossnet.sia.projectmanagement.infrastructure.persistence.HibernateProjectRepository" 
+          autowire="byName"/>
+    
+    <bean id="identificationService" 
+          class="com.didara.common.domain.model.IdentificationService" 
+          autowire="byName"/>
+    
+    <bean id="projectDomainService" 
+          class="ws.crossnet.sia.projectmanagement.domain.model.internal.ProjectDomainServiceImpl" 
+          autowire="byName"/>
+    
+    <bean id="projectManagementApplicationService" 
+          class="ws.crossnet.sia.projectmanagement.application.internal.ProjectManagementApplicationServiceImpl" 
+          autowire="byName"/>
+
+    <bean id="queryProjectManagementApplicationService" 
+          class="ws.crossnet.sia.projectmanagement.application.internal.QueryProjectManagementApplicationServiceImpl" 
+          autowire="byName"/>
+        
+    <bean id="domainRegistry" 
+          class="ws.crossnet.sia.projectmanagement.domain.model.DomainRegistry" 
+          autowire="byName"/>        
+</beans>
