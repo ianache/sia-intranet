@@ -67,7 +67,10 @@
     <aop:config>
         <aop:pointcut id="CommonRepositoriesOperations"
             expression="execution(* ws.crossnet..infrastructure.persistence.*Repository.*(..))"/>
+        <aop:pointcut id="CommonApplicationOperations"
+            expression="execution(* ws.crossnet..application.internal.*ApplicationServiceImpl.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="CommonRepositoriesOperations"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="CommonApplicationOperations"/>
     </aop:config>
     
     <bean id="globalDomainEventProcess" 

@@ -8,8 +8,8 @@ import javax.servlet.ServletContextListener;
  *
  * @author ianache
  */
-public class DerbyDataFactory implements ServletContextListener {
-
+public class DerbyDataFactory /*implements ServletContextListener*/ {
+/*
     private DatasourceObject datasourceObject;
     //private ServletContext servletContext;
 
@@ -24,5 +24,6 @@ public class DerbyDataFactory implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         datasourceObject.shutdown();
     }
+    */
 }
 

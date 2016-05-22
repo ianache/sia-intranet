@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author ianache
  */
-public class DerbyDatabase implements DatasourceObject {
-
+public class DerbyDatabase /*implements DatasourceObject*/ {
+/*
     private static final Logger logger = LoggerFactory.getLogger(DerbyDatabase.class);
     private Boolean isInitialized = false;
     private Boolean isShutdown = false;
@@ -55,5 +55,5 @@ public class DerbyDatabase implements DatasourceObject {
             }
         }
     }
-
+*/
 }

@@ -1,18 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
- 
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
     <ui:composition>
-        <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Gestion de Proyectos</a></li>
-            <li><a href="project_catalog.xhtml">Catalogo</a></li>
-            <li><a href="project_roles.xhtml">Roles</a></li>
-            <li><a href="project_workproducts.xhtml">Productos de Trabajo</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Requerimientos</a></li>
-            <li><a href="requisites_repositories.xhtml">Repositorios</a></li>
-            <li><a href="requisites_types.xhtml">Tipos de Requerimientos</a></li>
-            <li><a href="requisites_admin.xhtml">Administracion</a></li>
-        </ul>        
+        <h:form>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Gestion de Proyectos</a></li>
+                <!--li><a href="project_new.xhtml">Nuevo Proyecto</a></li-->
+                <li><a href="project_catalog.xhtml">Catalogo</a></li>
+                <li><a href="project_roles.xhtml">Roles</a></li>
+                <li><a href="project_workproducts.xhtml">Productos de Trabajo</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Requerimientos</a></li>
+                <li><a href="requisites_repositories.xhtml">Repositorios</a></li>
+                <li><a href="requisites_types.xhtml">Tipos de Requerimientos</a></li>
+                <li><a href="requisites_admin.xhtml">Administracion</a></li>
+            </ul>        
+        </h:form>
+        <!--b:panel look="primary" title="Sidebar">
+            <b:listLinks>
+                <b:navLink header="BootsFaces" />
+                <b:navLink href="http://www.bootsfaces.net" value="BootsFaces"
+                           icon="globe" iconAlign="right"/>
+                <b:navLink></b:navLink>
+                <b:navLink header="Bootstrap"/>
+                <b:navLink href="http://getbootstrap.com/components/#navbar" value="Bootstrap" icon="link"></b:navLink>
+                <b:navLink></b:navLink>
+                <b:navLink header="Preview"/>
+                <b:navLink value="Labels and Badges" outcome="/bootstrap/labelsbadge"
+                           icon="tag" iconAlign="right"/>
+                <b:navLink value="Slider" outcome="/jquery-ui/slider" iconAwesome="sliders" />
+            </b:listLinks>
+        </b:panel-->
     </ui:composition>
 </html>

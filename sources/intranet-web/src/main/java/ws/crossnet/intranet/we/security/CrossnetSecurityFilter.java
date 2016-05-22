@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author ianache
  */
-public class CrossnetSecurityFilter implements javax.servlet.Filter {
+public class CrossnetSecurityFilter /*implements javax.servlet.Filter*/ {
     public static final Logger logger = LoggerFactory.getLogger(CrossnetSecurityFilter.class);
-    
+    /*
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         logger.debug("Entering CROSSNET Security Filter init");
@@ -34,5 +34,5 @@ public class CrossnetSecurityFilter implements javax.servlet.Filter {
         logger.debug("Entering CROSSNET Security Filter destroy");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+*/
 }

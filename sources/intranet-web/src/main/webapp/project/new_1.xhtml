@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">    
+    <h:head>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+        <title>Project</title>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+            <title>CROSSNET @ Intranet Corporativa</title>
+        </f:facet>
+
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />            
+            <h:outputStylesheet name="css/dashboard.css" />            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />            
+            <h:outputScript name="bootstrap/js/bootstrap.js" />
+        </f:facet>
+
+        <f:facet name="last">
+            <h:outputStylesheet name="css/crossnet.css" />
+        </f:facet>
+
+    </h:head>    
+
+    <h:body>
+        <h1 class="page-header"> <i class="fa fa-suitcase"></i>New Project</h1>
+        <h:form id="newproject-form">
+            <p:growl id="growl" sticky="true" showDetail="true"/>
+            <!-- http://www.primefaces.org/showcase/ui/panel/wizard.xhtml -->
+            <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                <p:tab id="personal" title="General Information">
+                    <p:panel header="Project Details">
+                        <p:messages />
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <h:outputText value="Code: *" />
+                            <p:inputText id="code" value="#{dfProjectNew.code}" required="true" label="code" />
+
+                            <p:outputLabel for="title" value="Title:" />
+                            <p:inputText id="title" value="#{dfProjectNew.title}" />
+
+                            <p:outputLabel for="description" value="Description:" />
+                            <p:inputTextarea id="description" value="#{dfProjectNew.description}" />
+
+                            <p:outputLabel for="category" value="Category:" />
+                            <p:selectOneMenu id="category" value="#{dfProjectNew.categoryId}">
+                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                <f:selectItem itemLabel="01" itemValue="Desarrollo SOA" />
+                                <f:selectItem itemLabel="02" itemValue="Consultoria BPM" />
+                                <f:selectItem itemLabel="03" itemValue="Consultoria BPA" />
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+                        
+                        <!--p:commandButton icon="ui-icon-save" value="Save" actionListener="#{dfProjectNew.save()}"/-->
+                        <p:commandButton icon="ui-icon-cancel" value="Cancel" action="cancel"/>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+
+
+
+            <!--p:panelGrid columns="2">
+                <p:outputLabel for="code" value="Code:" />
+                <p:inputText id="code" value="#{dfProjectNew.code}" />
+
+                <p:outputLabel for="title" value="Title:" />
+                <p:inputText id="title" value="#{dfProjectNew.title}" />
+
+                <p:outputLabel for="category" value="Category:" />
+                <p:selectOneMenu id="category" value="#{dfProjectNew.categoryId}">
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItem itemLabel="01" itemValue="Desarrollo SOA" />
+                    <f:selectItem itemLabel="02" itemValue="Consultoria BPM" />
+                    <f:selectItem itemLabel="03" itemValue="Consultoria BPA" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="description" value="Description:" />
+                <p:inputTextarea id="description" value="#{dfProjectNew.description}" />
+
+                <f:facet name="footer">
+                    <p:commandButton icon="ui-icon-save" value="Save" actionListener="#{dfProjectNew.save}"/>
+                    <p:commandButton icon="ui-icon-cancel" value="Cancel" action="cancel"/>
+                </f:facet>
+            </p:panelGrid-->
+        </h:form>
+    </h:body>
+
+</html>

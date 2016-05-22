@@ -11,3 +11,8 @@ and open the template in the editor.
 .myTable td:nth-child(1) {
     width: 20px;
 }
+
+
+span.ui-button-text.ui-c {
+    font-size: 12px;
+}

@@ -74,7 +74,7 @@
         <dependency>
             <groupId>ws.crossnet</groupId>
             <artifactId>gestionproyecto-domain-model</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- JSF -->
         
@@ -104,7 +104,7 @@
 
         <!-- ACEGI Security -->
                         
-        <dependency>
+        <!--dependency>
             <groupId>net.sourceforge.jsf-comp</groupId>
             <artifactId>acegi-jsf</artifactId>
             <version>${acegi.version}</version>
@@ -114,13 +114,18 @@
             <groupId>org.acegisecurity</groupId>
             <artifactId>acegi-security</artifactId>
             <version>1.0.7</version>
-        </dependency>
+        </dependency-->
         
         <!--dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>3.1.2.RELEASE</version>
         </dependency-->
+        <dependency>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+            <version>0.8.5</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>

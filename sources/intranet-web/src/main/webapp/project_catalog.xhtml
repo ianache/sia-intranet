@@ -10,29 +10,70 @@
     <h:body>
         <ui:composition template="/templates/main.xhtml">
             <ui:define name="content">                        
-                <h1 class="page-header"> <i class="fa fa-tachometer"></i>Projects Catalog</h1>
+                <!-- fa-comments -->
+                <!-- http://fontawesome.io/icons/#web-application -->
+                <h:form>
+                    <h1 class="page-header"> <i class="fa fa-suitcase"></i>Projects Portfolio
+                        <p:commandButton value="Nuevo Proyecto" icon="ui-icon-extlink" actionListener="#{projectCatalogBean.newProject}">
+                            <!--p:ajax event="dialogReturn" listener="#{dfView.onCarChosen}" update="growl" /-->
+                        </p:commandButton>                
+                    </h1>
 
-                <p:dataTable id="project-catalog" rows="5" paginator="true" styleClass="myTable"
-                             emptyMessage="No project founds"
-                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15"
-                             var="project" value="#{projectCatalogBean.projects}">
-                    <p:column headerText="Code" style="width:80px">
-                        <h:outputText value="#{project.code}" />
-                    </p:column>
+                    <p:dataTable id="project-catalog" rows="5" paginator="true" styleClass="myTable"
+                                 emptyMessage="No project founds"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 var="project" value="#{projectCatalogBean.projects}">
+                        <p:column headerText="Code" style="width:160px">
+                            <h:outputText value="#{project.code}" />
+                        </p:column>
 
-                    <p:column headerText="Title">
-                        <h:outputText value="#{project.title}" />
-                    </p:column>
+                        <p:column headerText="Title">
+                            <h:outputText value="#{project.title}" />
+                        </p:column>
 
-                    <p:column headerText="State Date" style="width:220px">
-                        <h:outputText value="#{project.stateDate}" />
-                    </p:column>
+                        <p:column headerText="State Date" style="width:200px">
+                            <h:outputText value="#{project.stateDate}" />
+                        </p:column>
 
-                    <p:column headerText="State" style="width:80px">
-                        <h:outputText value="#{project.currentState}" />
-                    </p:column>
-                </p:dataTable>
+                        <p:column headerText="State" style="width:90px">
+                            <h:outputText value="#{project.currentState}" />
+                        </p:column>
+                        <p:column headerText="Actions" style="width:130px">
+
+                            <p:menuButton value="Actions">
+                                <p:menuitem value="Appove" action="#{projectCatalogBean.approve(project.id)}" icon="ui-icon-close"  rendered="#{project.currentState == 'Created'}"/>
+                                <p:menuitem value="Start" action="#{projectCatalogBean.start(project.id)}" icon="ui-icon-extlink" rendered="#{project.currentState == 'Approved'}"/>
+                                <p:menuitem value="Cancel" action="#{projectCatalogBean.cancel(project.id)}" icon="ui-icon-close"  rendered="#{project.currentState == 'Created' || project.currentState == 'Started'}"/>
+                                <p:menuitem value="Open" action="#{projectCatalogBean.open(project.id)}" icon="ui-icon-arrowrefresh-1-w" rendered="#{project.currentState == 'Created'}" />
+                                <p:menuitem value="Restart" action="#{projectCatalogBean.restart(project.id)}" icon="ui-icon-disk" rendered="#{project.currentState == 'Suspended'}"/>
+                                <p:menuitem value="Suspend" action="#{projectCatalogBean.suspend(project.id)}" icon="ui-icon-close" rendered="#{project.currentState == 'Approved' || project.currentState == 'Started'}"/>
+                                <p:menuitem value="Delete" action="#{projectCatalogBean.delete(project.id)}" icon="ui-icon-delete" rendered="#{project.currentState == 'Created'}"/>
+                            </p:menuButton>
+
+                            <!--p:megaMenu orientation="vertical" style="margin-top:20px">
+                                <p:menuitem value="Cancel" url="#{projectCatalogBean.cancel(project.id)}"/>
+                                <p:menuitem value="Open" url="#"/>
+                                <p:menuitem value="Restart" url="#"/>
+                                <p:menuitem value="Start" url="#"/>
+                            </p:megaMenu-->
+                            <!--p:contextMenu for="">
+                                <p:menuitem value="Cancel" update="carDetail" icon="ui-icon-search" 
+                                            oncomplete="#{projectCatalogBean.cancel(project.id)}"/>
+                                <p:menuitem value="Open" update="cars" icon="ui-icon-close" 
+                                            actionListener="#{projectCatalogBean.open(project.id)}"/>   
+                            </p:contextMenu-->
+                        </p:column>
+                    </p:dataTable>
+
+                    <!--p:dialog header="Project General Information" 
+                              widgetVar="carDialog" modal="true" 
+                              showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:outputPanel id="carDetail" style="text-align:center;">
+                            
+                        </p:outputPanel>
+                    </p:dialog-->
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
