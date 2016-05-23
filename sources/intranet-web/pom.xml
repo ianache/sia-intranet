@@ -45,6 +45,9 @@
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.19</slf4j.version>
         <springframework.version>4.0.1.RELEASE</springframework.version>
+        <springframework.security.version>4.1.0.RELEASE</springframework.security.version>
+        <jersey.version>1.19.1</jersey.version>
+        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
                 
     </properties>
     
@@ -60,8 +63,8 @@
             
             <dependency>
                 <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>4.0.4.RELEASE</version>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${springframework.security.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -121,11 +124,6 @@
             <artifactId>spring-security-web</artifactId>
             <version>3.1.2.RELEASE</version>
         </dependency-->
-        <dependency>
-            <groupId>net.bootsfaces</groupId>
-            <artifactId>bootsfaces</artifactId>
-            <version>0.8.5</version>
-        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -197,31 +195,43 @@
             <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>4.0.4.RELEASE</version>
-        </dependency>        
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
+        </dependency>
+        
+        <!-- Spring Security -->
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
         </dependency>
         
         <!-- Jersey -->
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-bundle</artifactId>
-            <version>1.19.1</version>
+            <version>${jersey.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-json</artifactId>
-            <version>1.19.1</version>
+            <version>${jersey.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey.contribs</groupId>
             <artifactId>jersey-spring</artifactId>
-            <version>1.19.1</version>
+            <version>${jersey.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -245,7 +255,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
+            <version>${hibernate.validator.version}</version>
         </dependency>
         
         <!-- Loggin -->

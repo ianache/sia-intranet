@@ -4,7 +4,8 @@
     
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/spring/pm-context.xml</param-value>
+        <param-value>/WEB-INF/spring/*context.xml</param-value>
+        <!--param-value>/WEB-INF/spring/pm-context.xml, /WEB-INF/spring/acegi-security-context</param-value-->
     </context-param>
 
     <context-param>
@@ -22,6 +23,19 @@
         <listener-class>ws.crossnet.intranet.database.DerbyDataFactory</listener-class>
     </listener-->
     
+    <!-- Spring Security -->
+    
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    
     <!-- REST API -->   
     <servlet>
         <servlet-name>jservlet</servlet-name>
@@ -34,7 +48,7 @@
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>
         </init-param>
-        <load-on-startup>2</load-on-startup>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     
     <servlet-mapping>
@@ -45,7 +59,7 @@
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>2</load-on-startup>
     </servlet>
     
     <servlet-mapping>
@@ -54,6 +68,7 @@
     </servlet-mapping>
                     
     <welcome-file-list>
+        <!--welcome-file>login.xhtml</welcome-file-->
         <welcome-file>frontpage.xhtml</welcome-file>
     </welcome-file-list>
     

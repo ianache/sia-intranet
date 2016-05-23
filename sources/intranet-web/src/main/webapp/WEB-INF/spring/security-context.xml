@@ -1,0 +1,57 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+
+    <security:http security="none" pattern="/login.xhtml"/>
+    <security:http security="none" pattern="/css/**"/>
+    
+    <!-- Autenticacion Basica -->
+    <!--security:http auto-config="false">
+        <security:intercept-url pattern="/**" access="hasRole('USER')" />
+        <security:http-basic/>
+    </security:http-->
+
+    <!-- Autenticacion con Formulario -->    
+    <security:http auto-config="false" use-expressions="false">
+        <security:intercept-url pattern="/**" access="ROLE_USER" />
+        <security:form-login login-page="/login.xhtml" 
+            default-target-url="/frontpage.xhtml"
+            always-use-default-target="true"/>
+        <!--security:logout logout-url="/frontpage.xhtml"/-->  
+        <security:csrf disabled="true"/>    
+    </security:http>
+    
+    <security:authentication-manager>
+        <!-- http://docs.spring.io/spring-security/site/docs/3.0.x/reference/ns-config.html -->
+        <security:authentication-provider>
+            <!--security:password-encoder hash="md5"/-->                
+            <security:user-service>
+                <!--security:user
+                    name="rod"
+                    password="a564de63c2d0da68cf47586ee05984d7"
+                    authorities="ROLE_SUPERVISOR, ROLE_USER, ROLE_TELLER" />
+                <security:user
+                    name="dianne"
+                    password="65d15fe9156f9c4bbffd98085992a44e"
+                    authorities="ROLE_USER,ROLE_TELLER" />
+                <security:user
+                    name="scott"
+                    password="2b58af6dddbd072ed27ffc86725d7d3a"
+                    authorities="ROLE_USER" />
+                <security:user
+                    name="peter"
+                    password="22b5c9accc6e1ba628cedc63a72d57f8"
+                    authorities="ROLE_USER" /-->
+                <security:user name="ianache" password="welcome1" authorities="ROLE_USER,ROLE_ADMIN"/>
+                <security:user name="nanache" password="welcome1" authorities="ROLE_USER"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+    
+    <bean id="loggerListener"
+         class="org.springframework.security.authentication.event.LoggerListener" />
+</beans>

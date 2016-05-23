@@ -1,5 +1,6 @@
 package ws.crossnet.intranet.web.backing.project;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.context.RequestContext;
@@ -10,7 +11,7 @@ import org.primefaces.context.RequestContext;
  */
 @ManagedBean(name = "dfProjectNew")
 @ViewScoped
-public class DFProjectNew {
+public class DFProjectNew implements Serializable  {
     private String code;
     private String title;
     private String description;

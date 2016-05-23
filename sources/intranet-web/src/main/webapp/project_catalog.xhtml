@@ -32,8 +32,10 @@
                             <h:outputText value="#{project.title}" />
                         </p:column>
 
-                        <p:column headerText="State Date" style="width:200px">
-                            <h:outputText value="#{project.stateDate}" />
+                        <p:column headerText="State Date" style="width:170px">
+                            <h:outputText value="#{project.stateDate}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy h:mm a"/>
+                            </h:outputText>
                         </p:column>
 
                         <p:column headerText="State" style="width:90px">

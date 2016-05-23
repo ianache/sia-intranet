@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="/templates/main.xhtml">
+            <ui:define name="content">                        
+                <h:form>
+                    <h1 class="page-header"> <i class="fa fa-suitcase"></i>Tasks Workspace</h1>
+
+                    <p:dataTable id="mytasks" rows="5" paginator="true" styleClass="myTable"
+                                 emptyMessage="No tasks founds"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 var="task" value="#{taskWorkspaceBean.myTasks}">
+                        <p:column headerText="Id" style="width:160px">
+                            <h:outputText value="#{task.taskId}" />
+                        </p:column>
+
+                        <p:column headerText="Title">
+                            <h:outputText value="#{task.title}" />
+                        </p:column>
+
+                        <p:column headerText="Due Date" style="width:200px">
+                            <h:outputText value="#{task.dueDate}">
+                                <f:convertDateTime type="date" pattern="dd-MM-yyyy h:mm a"/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="State" style="width:90px">
+                            <h:outputText value="#{task.state}" />
+                        </p:column>
+                        <p:column headerText="Actions" style="width:130px">
+                            <p:menuButton value="Actions">
+                                <p:menuitem value="Claim" action="#{taskWorkspaceBean.claim(task.taskId)}" icon="ui-icon-close"/>
+                                <p:menuitem value="Release" action="#{taskWorkspaceBean.release(task.taskId)}" icon="ui-icon-extlink"/>
+                                <p:menuitem value="Delegate" action="#{taskWorkspaceBean.delegate(task.taskId)}" icon="ui-icon-close"/>
+                                <p:menuitem value="Execute" action="#{taskWorkspaceBean.execute(task.taskId)}" icon="ui-icon-play"/>
+                            </p:menuButton>                        
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
